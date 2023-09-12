@@ -1,0 +1,20 @@
+<div id="apodContainer">
+    <h1>InSight: Mars Weather Service API</h1>
+    <img id="apodImage" src="" alt="APOD">
+    <p id="apodExplanation"></p>
+</div>
+
+<script>
+    const apiKey = "t41SwI6XXRMf0bzOKud3gzG0ndeCYPlNaH8atbJH";
+    const apodUrl = 'https://api.nasa.gov/insight_weather/?api_key=DEMO_KEY&feedtype=json&ver=1.0';
+
+    fetch(apodUrl)
+        .then(response => response.json())
+        .then(data => {
+            const apodImage = document.getElementById('apodImage');
+            const apodExplanation = document.getElementById('apodExplanation');
+
+            apodImage.src = data.url;
+            apodExplanation.textContent = data.explanation;
+        })
+        .catch(error => console.error('Error fetching data:', error));
